@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<meta name="theme-color" content="#030014">
+<title>Иван Дерягин | Carpenter54</title>
+<script src="https://www.google.com/recaptcha/api.js?render=6Le2RNUsAAAAAIKprVdKSLypZnfgId3qwvJkinui"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+:root{
+  --bg:#030014;
+  --card:rgba(15,10,35,0.94);
+  --glass:rgba(255,255,255,0.08);
+  --border:rgba(255,255,255,0.12);
+  --text:#fff;
+  --text2:rgba(255,255,255,0.8);
+  --muted:rgba(255,255,255,0.45);
+  --primary:#00d4ff;
+  --grad:linear-gradient(135deg,#00d4ff,#7b2cbf,#ff006e);
+  --radius:24px;
+  --radius-sm:16px;
+  --shadow:0 25px 45px rgba(0,0,0,0.5);
+}
+
+body{
+  font-family:system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px 14px 70px;
+}
+
+/* капча — минимальная, почти не видна */
+.grecaptcha-badge{
+  visibility:visible !important;
+  opacity:0.4 !important;
+  bottom:8px !important;
+  left:8px !important;
+  right:auto !important;
+  width:60px !important;
+  height:60px !important;
+  border-radius:30px !important;
+  overflow:hidden !important;
+}
+.grecaptcha-badge:hover{
+  width:200px !important;
+  opacity:1 !important;
+}
+
+/* кнопка админки */
+.admin-btn{
+  position:fixed;
+  bottom:16px;
+  right:16px;
+  width:46px;
+  height:46px;
+  background:rgba(0,212,255,0.12);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(0,212,255,0.35);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  z-index:100;
+  transition:0.2s;
+}
+.admin-btn:hover{transform:scale(1.05)}
+.admin-btn i{font-size:20px;color:#00d4ff}
+
+.card{
+  max-width:500px;
+  width:100%;
+  background:var(--card);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px 24px;
+  box-shadow:var(--shadow);
+  animation:appear 0.4s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.header{text-align:center;margin-bottom:24px}
+.avatar{
+  width:96px;height:96px;
+  background:var(--grad);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 14px;
+  border:3px solid var(--bg);
+  box-shadow:0 0 0 2px var(--primary);
+  cursor:pointer;
+}
+.avatar i{font-size:40px;color:#fff}
+.name{
+  font-size:1.55rem;
+  font-weight:800;
+  background:var(--grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.keywords{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:16px 0 12px;
+}
+.keyword{
+  background:var(--glass);
+  border:1px solid var(--border);
+  padding:5px 14px;
+  border-radius:40px;
+  font-size:12px;
+  font-weight:500;
+  color:var(--primary);
+}
+
+.work-hours{
+  text-align:center;
+  padding:7px 14px;
+  background:var(--glass);
+  border-radius:40px;
+  display:inline-block;
+  width:auto;
+  margin:0 auto 20px;
+  font-size:12px;
+  color:var(--text2);
+}
+.work-hours i{color:var(--primary);margin-right:6px}
+
+.contacts{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.contact{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:13px 16px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  cursor:pointer;
+  transition:0.15s;
+}
+.contact:active{transform:scale(0.98)}
+.contact-icon{
+  width:46px;height:46px;
+  background:var(--grad);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  color:#fff;
+}
+.contact-info{flex:1}
+.contact-label{font-size:9px;color:var(--muted);letter-spacing:0.5px}
+.contact-value{font-size:14px;font-weight:600}
+
+.tg-btn{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(135deg,#0088cc,#006699);
+  border:none;
+  border-radius:var(--radius-sm);
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  cursor:pointer;
+  margin:20px 0;
+}
+
+.form-block{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:18px;
+  margin:20px 0;
+}
+.form-block h3{
+  font-size:15px;
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.form-block input,.form-block textarea{
+  width:100%;
+  padding:12px 14px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--text);
+  font-size:14px;
+  margin-bottom:10px;
+  outline:none;
+}
+.form-block textarea{min-height:70px;resize:vertical}
+.form-block button{
+  width:100%;
+  padding:13px;
+  background:var(--grad);
+  border:none;
+  border-radius:12px;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.social{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin:20px 0;
+}
+.soc{
+  width:48px;height:48px;
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  color:var(--text);
+  cursor:pointer;
+}
+
+.qr-block{
+  background:var(--glass);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:16px;
+  text-align:center;
+  margin-top:16px;
+}
+.qr-img{
+  background:#fff;
+  padding:10px;
+  border-radius:16px;
+  display:inline-block;
+}
+.qr-img img{width:100px;height:100px}
+
+.footer{
+  text-align:center;
+  font-size:10px;
+  color:var(--muted);
+  margin-top:20px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+
+.toast-box{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9999;
+  width:calc(100% - 32px);
+  max-width:340px;
+}
+.toast{
+  background:var(--card);
+  backdrop-filter:blur(20px);
+  border-left:3px solid #00ff88;
+  border-radius:12px;
+  padding:11px 14px;
+  margin-top:6px;
+  animation:toastIn 0.2s;
+}
+@keyframes toastIn{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:480px){
+  .card{padding:24px 18px}
+  .avatar{width:80px;height:80px}
+  .avatar i{font-size:32px}
+  .name{font-size:1.35rem}
+  .admin-btn{width:42px;height:42px}
+}
+</style>
+</head>
+<body>
+
+<div class="admin-btn" onclick="location.href='admin.html'">
+  <i class="fas fa-chart-line"></i>
+</div>
+
+<div class="card">
+  <div class="header">
+    <div class="avatar" onclick="window.open('https://t.me/carpenter54','_blank')">
+      <i class="fas fa-hammer"></i>
+    </div>
+    <h1 class="name">Дерягин Иван</h1>
+    <div class="keywords">
+      <span class="keyword">🏠 Дома под ключ</span>
+      <span class="keyword">🪑 Мебель на заказ</span>
+      <span class="keyword">🔨 Отделка</span>
+    </div>
+    <div class="work-hours">
+      <i class="far fa-clock"></i> Пн-Пт: 9:00–18:00 | Сб: 10:00–15:00
+    </div>
+  </div>
+
+  <div class="contacts">
+    <div class="contact" onclick="copyText('+79059522129','📞 Телефон скопирован')">
+      <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+      <div class="contact-info">
+        <div class="contact-label">Телефон</div>
+        <div class="contact-value">+7 (905) 952-21-29</div>
+      </div>
+    </div>
+    <div class="contact" onclick="window.open('https://t.me/carpenter54','_blank')">
+      <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+      <div class="contact-info">
+        <div class="contact-label">Telegram</div>
+        <div class="contact-value">@carpenter54</div>
+      </div>
+    </div>
+    <div class="contact" onclick="copyText('nbelogubov@yandex.ru','📧 Почта скопирована')">
+      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+      <div class="contact-info">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">nbelogubov@yandex.ru</div>
+      </div>
+    </div>
+    <div class="contact" onclick="saveVCard()">
+      <div class="contact-icon"><i class="fas fa-address-card"></i></div>
+      <div class="contact-info">
+        <div class="contact-label">Контакт</div>
+        <div class="contact-value">Сохранить vCard</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="tg-btn" onclick="window.open('https://t.me/carpenter54','_blank')">
+    <i class="fab fa-telegram"></i> Написать в Telegram
+  </button>
+
+  <div class="form-block">
+    <h3><i class="fas fa-paper-plane"></i> Оставить заявку</h3>
+    <form id="contactForm">
+      <input type="text" id="formName" placeholder="Ваше имя" required>
+      <input type="text" id="formContact" placeholder="Телефон или Telegram" required>
+      <textarea id="formMsg" placeholder="Сообщение..." required></textarea>
+      <input type="hidden" id="recaptchaToken">
+      <button type="submit" id="submitBtn">Отправить</button>
+    </form>
+  </div>
+
+  <div class="social">
+    <a href="https://t.me/carpenter54" class="soc" target="_blank"><i class="fab fa-telegram"></i></a>
+    <a href="https://wa.me/79059522129" class="soc" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <button class="soc" onclick="copyText(location.href,'🔗 Ссылка скопирована')"><i class="fas fa-link"></i></button>
+    <button class="soc" onclick="sharePage()"><i class="fas fa-share-alt"></i></button>
+  </div>
+
+  <div class="qr-block">
+    <div class="qr-img"><img id="qrImg" src="" alt="QR"></div>
+    <p style="font-size:10px; margin-top:6px; color:var(--muted)">Наведите камеру → Telegram</p>
+  </div>
+
+  <div class="footer">© <span id="year"></span> Дерягин Иван</div>
+</div>
+
+<div class="toast-box" id="toastBox"></div>
+
+<script>
+// ===== КОНФИГ =====
+const TG_TOKEN = '7561201035:AAFa5EDnWFWDfo5KblSzuPnETk26L0QY-Zo';
+const TG_CHAT = '1134623108';
+const SITE_KEY = '6Le2RNUsAAAAAIKprVdKSLypZnfgId3qwvJkinui';
+
+document.getElementById('year').innerText = new Date().getFullYear();
+document.getElementById('qrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent('https://t.me/carpenter54')}`;
+
+// счётчик
+let views = localStorage.getItem('c54_views') || 0;
+views = parseInt(views) + 1;
+localStorage.setItem('c54_views', views);
+
+const todayKey = 'c54_vis_' + new Date().toDateString();
+if (!localStorage.getItem(todayKey)) {
+  localStorage.setItem(todayKey, '1');
+  const visits = JSON.parse(localStorage.getItem('c54_visits') || '[]');
+  visits.unshift({ time: new Date().toLocaleString('ru-RU'), device: /Mobile/i.test(navigator.userAgent) ? '📱' : '💻' });
+  localStorage.setItem('c54_visits', JSON.stringify(visits.slice(0, 200)));
+  fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: `🟢 Новый визит\n${new Date().toLocaleString('ru-RU')}` })
+  }).catch(e => console.log);
+}
+
+function toast(msg) {
+  const box = document.getElementById('toastBox');
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.innerHTML = `<span style="flex:1">${msg}</span><span onclick="this.parentElement.remove()" style="cursor:pointer">✕</span>`;
+  box.appendChild(el);
+  setTimeout(() => el.remove(), 2500);
+}
+
+function copyText(text, msg) {
+  navigator.clipboard.writeText(text);
+  toast(msg);
+}
+
+function sharePage() {
+  if (navigator.share) {
+    navigator.share({ title: 'Иван Дерягин', url: window.location.href });
+  } else {
+    copyText(window.location.href, '🔗 Ссылка скопирована');
+  }
+}
+
+function saveVCard() {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Дерягин Иван
+TEL:+79059522129
+EMAIL:nbelogubov@yandex.ru
+URL:https://t.me/carpenter54
+END:VCARD`;
+  const a = document.createElement('a');
+  a.href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
+  a.download = 'carpenter54.vcf';
+  a.click();
+  toast('💾 Контакт сохранён');
+}
+
+// ОТПРАВКА — БЫСТРАЯ
+let captchaReady = false;
+grecaptcha.ready(() => {
+  captchaReady = true;
+});
+
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>';
+
+  const name = document.getElementById('formName').value;
+  const contact = document.getElementById('formContact').value;
+  const msg = document.getElementById('formMsg').value;
+
+  try {
+    // получаем токен
+    const token = await grecaptcha.execute(SITE_KEY, { action: 'contact' });
+    
+    // сохраняем
+    const messages = JSON.parse(localStorage.getItem('c54_messages') || '[]');
+    messages.unshift({ time: new Date().toLocaleString('ru-RU'), name, contact, msg });
+    localStorage.setItem('c54_messages', JSON.stringify(messages.slice(0, 200)));
+
+    // отправляем в телеграм (не ждём ответа, чтоб не тормозило)
+    fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT, text: `📬 НОВАЯ ЗАЯВКА\n👤 ${name}\n📱 ${contact}\n💬 ${msg}\n🕒 ${new Date().toLocaleString('ru-RU')}` })
+    }).catch(e => console.log);
+
+    toast('✅ Отправлено!');
+    document.getElementById('contactForm').reset();
+  } catch (err) {
+    toast('❌ Ошибка');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Отправить';
+  }
+});
+</script>
+</body>
+</html>
